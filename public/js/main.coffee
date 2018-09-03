@@ -20,12 +20,12 @@ lastFMrequest = () ->
             artist = track.artist['\#text']
             album = track.album['\#text']
             song = track.name
-            imgURL = track.image[3]['\#text']
-
-            if imgURL
-                image.innerHTML = '<img src="' + imgURL + '" alt="' + album + '" title="' + album + '" class="shadow-1">'
+            if track.image[3]['\#text']
+                imgURL = track.image[3]['\#text']
             else
-                image.innerHTML = '<img src="/svg/notes.svg" alt="No Image" class="shadow-1" height="300" width="300">'
+                imgURL = "/svg/notes.svg"
+
+            image.innerHTML = '<img src="' + imgURL + '" alt="' + album + '" title="' + album + '" class="h5 shadow-1">'
             music.innerHTML = '<p class="mb0"><a href="' + url + '" target="_blank" class="link underline-hover color-inherit">' + song + '<br><span class="f3 silver">' + artist + ' &mdash; ' + album + '</span></a></p>'
     xhr.send(null)
 
