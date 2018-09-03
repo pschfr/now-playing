@@ -1,4 +1,5 @@
-debug = true
+# Used in development
+debug = false
 
 # Load scrobbles from Last.fm
 lastFMrequest = () ->
@@ -22,12 +23,14 @@ lastFMrequest = () ->
             imgURL = track.image[3]['\#text']
 
             if imgURL
-                image.innerHTML = '<img src="' + imgURL + '" alt="' + album + '" title="' + album + '">'
+                image.innerHTML = '<img src="' + imgURL + '" alt="' + album + '" title="' + album + '" class="shadow-1">'
             else
-                image.innerHTML = '<img src="/img/no-cover.png" alt="No Image">'
-            music.innerHTML = '<p style="margin:0"><a href="' + url + '" style="color:inherit">' + song + '<br><small>' + artist + ' &mdash; ' + album + '</small></a></p>'
+                image.innerHTML = '<img src="/svg/notes.svg" alt="No Image" class="shadow-1" height="300" width="300">'
+            music.innerHTML = '<p class="mb0"><a href="' + url + '" target="_blank" class="link underline-hover color-inherit">' + song + '<br><span class="f3 silver">' + artist + ' &mdash; ' + album + '</span></a></p>'
     xhr.send(null)
 
     t = setTimeout(lastFMrequest, 60000) # refresh every minute
 
-lastFMrequest()
+# On load, do this...
+window.addEventListener 'load', () ->
+    lastFMrequest()
