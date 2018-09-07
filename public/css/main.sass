@@ -1,7 +1,12 @@
 // Almost all of the styling is done with Tachyons!
     
 body
-    background-image: linear-gradient(black, gray)
+    // This is an experimental property only supported by Safari and Edge for now
+    // https://caniuse.com/#search=backdrop-filter
+    backdrop-filter: blur(10px) brightness(60%)
+
+img
+    object-fit: contain
 
 .source-sans-pro
     font-family: 'Source Sans Pro', sans-serif

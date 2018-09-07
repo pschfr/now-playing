@@ -8,7 +8,7 @@ html(lang="en")
 		link(rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css")
 		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:b")
 		link(rel="stylesheet" href=(environment == 'production' ? '/now-playing/css/main.css' : '/css/main.css'))
-	body.tc.sans-serif.vh-100.w-100.dt.white.source-sans-pro.f2.b
+	body.tc.sans-serif.vh-100.w-100.dt.white.source-sans-pro.f2.b.bg-gray.cover.bg-center.pa4
 		div.dtc.v-mid
 			!= yield
 		script(src=(environment == 'production' ? '/now-playing/js/main.js' : '/js/main.js'))
