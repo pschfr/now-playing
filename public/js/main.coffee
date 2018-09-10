@@ -8,7 +8,7 @@ lastFMrequest = () ->
     lastFM_URL = 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=' + username + '&api_key=' + API_key + '&limit=1&format=json'
     xhr = new XMLHttpRequest()
     music = document.getElementById('music')
-    image = document.getElementById('image')
+    image = document.getElementById('album')
 
     xhr.open('GET', lastFM_URL, true)
     xhr.onreadystatechange = () ->
@@ -30,7 +30,9 @@ lastFMrequest = () ->
                 imgURL = "/svg/notes.svg"
 
             # Add content to HTML
-            image.innerHTML = '<img src="' + imgURL + '" alt="' + album + '" title="' + album + '" class="vh-50 w-100">'
+            image.src = imgURL
+            image.alt = album
+            image.title = album
             music.innerHTML = '<p class="mb0"><a href="' + url + '" target="_blank" class="link underline-hover color-inherit">' + song + '<br><span class="f3 light-silver">' + artist + ' — ' + album + '</span></a></p>'
 
             # Changes page title
