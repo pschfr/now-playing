@@ -34,10 +34,10 @@ lastFMrequest = () ->
             image.alt = album
             image.title = album
             # If image as JPG doesn't load, try PNG version
-            if !image.complete
+            if image.complete = false
                 imgURL = imgURL.replace('.jpg', '.png')
                 image.src = imgURL
-            music.innerHTML = '<p class="mb0"><a href="' + url + '" target="_blank" class="link underline-hover color-inherit">' + song + '<br><span class="f3 light-silver">' + artist + ' — ' + album + '</span></a></p>'
+            music.innerHTML = '<a href="' + url + '" target="_blank" class="link underline-hover color-inherit">' + song + '<br><span class="f3 light-silver">' + artist + ' — ' + album + '</span></a>'
 
             # Changes page title
             document.title = song + ' — ' + artist
