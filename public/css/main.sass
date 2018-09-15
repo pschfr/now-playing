@@ -10,6 +10,11 @@ body
     // This is an experimental property only supported by Safari and Edge for now
     // https://caniuse.com/#search=backdrop-filter
     backdrop-filter: blur(10px) brightness(60%)
+    // This hides the footer link except when the body is hovered
+    footer a
+        transition: opacity 0.5s
+    &:not(:hover) footer a
+        opacity: 0
 
 img
     object-fit: contain
