@@ -27,7 +27,7 @@ lastFMrequest = () ->
                 # https://getmusicbee.com/forum/index.php?topic=22717.msg133539#msg133539
                 imgURL = track.image[0]['\#text'].replace('34s', '_').replace('.png', '.jpg')
             else
-                imgURL = "/svg/notes.svg"
+                imgURL = "svg/notes.svg"
 
             # Add content to HTML
             image.src = imgURL
