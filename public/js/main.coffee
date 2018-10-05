@@ -1,6 +1,9 @@
 # Used in development
 debug = false
 
+# Initiate timer variable
+timer = ''
+
 # Load scrobbles from Last.fm
 lastFMrequest = () ->
     username = 'paul_r_schaefer'
@@ -46,8 +49,15 @@ lastFMrequest = () ->
             document.body.style.backgroundImage = "url('" + imgURL + "')" 
     xhr.send(null)
 
-    t = setTimeout(lastFMrequest, 5000) # refresh every 5 seconds
+    timer = setTimeout(lastFMrequest, 5000) # refresh every 5 seconds
 
 # On load, do this...
 window.addEventListener 'load', () ->
     lastFMrequest()
+
+# If tab is hidden, clear timer, or start it again
+document.addEventListener 'visibilitychange', () ->
+    if document.visibilityState == 'hidden'
+        clearTimeout(timer)
+    else if document.visibilityState == 'visible'
+        lastFMrequest()
