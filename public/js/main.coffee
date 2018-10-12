@@ -45,8 +45,19 @@ lastFMrequest = () ->
             # Changes page title
             document.title = song + ' — ' + artist
 
-            # Sets body background image, later blurred with CSS
-            document.body.style.backgroundImage = "url('" + imgURL + "')" 
+            # If the browser doesn't support backdrop-filter, append the image where neccessary for the fallback.
+            if !CSS.supports('backdrop-filter: blur(1px)')
+                # So it doesn't continously append to the CSS, only change the rule if the imgURL is different
+                if document.styleSheets[0].cssRules[0].selectorText == 'html'
+                    # Inserts the rule the first time
+                    document.styleSheets[0].insertRule('body::before { background-image: url("' + imgURL + '") }')
+                else
+                    # Checks if the new image URL is different before replacing
+                    if imgURL != document.styleSheets[0].cssRules[0].style.backgroundImage.replace('url("', '').replace('")', '')
+                        document.styleSheets[0].cssRules[0].style.backgroundImage = 'url("' + imgURL + '")'
+            # Otherwise, just append it to the body bg
+            else
+                document.body.style.backgroundImage = "url('" + imgURL + "')"
     xhr.send(null)
 
     timer = setTimeout(lastFMrequest, 5000) # refresh every 5 seconds

@@ -1,5 +1,8 @@
 // Almost all of the styling is done with Tachyons!
 
+// My variables
+$blur: blur(10px) brightness(60%)
+
 // Tachyons overrides
 $sans-serif: -apple-system, BlinkMacSystemFont, roboto, 'avenir next', avenir, helvetica, 'helvetica neue', ubuntu, noto, 'segoe ui', arial, sans-serif
 
@@ -9,10 +12,27 @@ $sans-serif: -apple-system, BlinkMacSystemFont, roboto, 'avenir next', avenir, h
 body
     // This is an experimental property only supported by Safari and Edge for now
     // https://caniuse.com/#search=backdrop-filter
-    backdrop-filter: blur(10px) brightness(60%)
+    backdrop-filter: $blur
     // This hides the footer link except when the body is hovered
     &:not(:hover) footer a
         opacity: 0
+
+// Backdrop-filter fallback for unsupported browsers (Firefox, IE)
+// The bg image has to be reapplied to body::before with JS
+@supports not (backdrop-filter: blur(1px))
+    body
+        &::before
+            content: ''
+            position: absolute
+            top: 0
+            right: 0
+            width: 100%
+            height: 100%
+            z-index: -1
+            background-position: center
+            background-repeat: no-repeat
+            background-size: cover
+            filter: $blur
 
 // Fades the link in/out
 footer a
